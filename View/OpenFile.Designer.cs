@@ -136,7 +136,6 @@ namespace TextComparatorGUI
             this.Name = "OpenFile";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OpenFile_FormClosing);
-            this.Load += new System.EventHandler(this.OpenFile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

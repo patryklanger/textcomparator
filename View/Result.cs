@@ -17,27 +17,25 @@ namespace TextComparatorGUI
         public Difference previousForm;
         private Text resultText;
         private PrimaryFileWorker fileWorker;
-        public Result(Text resultText, PrimaryFileWorker fileWorker)
+        public Result(PrimaryFileWorker fileWorker)
         {
             this.fileWorker = fileWorker;
-            this.resultText = resultText;
             InitializeComponent();
             saveFileDialog.Filter = "txt files (.txt)|.txt|All files (.)|.";
-        }
-
-        private void Result_Load(object sender, EventArgs e)
-        {
-            resultTextBox.AppendText(resultText.Content);
         }
 
         private void fileCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+            previousForm.Show();
         }
 
-        public void initialize()
+        public void initialize(Text resultText)
         {
-
+            this.resultText = resultText;
+            resultTextBox.Text = "";
+            resultTextBox.AppendText(resultText.Content);
+            this.Show();
         }
 
         private void fileSave_Click(object sender, EventArgs e)

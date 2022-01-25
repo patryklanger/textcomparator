@@ -70,11 +70,6 @@ namespace TextComparatorGUI
             compareButton.Enabled = true;
         }
 
-        private void OpenFile_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void OpenFile_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();

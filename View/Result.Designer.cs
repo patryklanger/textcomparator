@@ -77,7 +77,6 @@ namespace TextComparatorGUI
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Result";
             this.Text = "Form3";
-            this.Load += new System.EventHandler(this.Result_Load);
             this.ResumeLayout(false);
 
         }
