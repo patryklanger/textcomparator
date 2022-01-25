@@ -14,20 +14,20 @@ namespace TextComparatorGUI
 {
     public partial class Result : System.Windows.Forms.Form
     {
-        private IFileReader fileReader;
         public Difference previousForm;
-        private ITextComparator textComparator;
-        public Result(ITextComparator textComparator)
+        private Text resultText;
+        private PrimaryFileWorker fileWorker;
+        public Result(Text resultText, PrimaryFileWorker fileWorker)
         {
-            this.textComparator = textComparator;
+            this.fileWorker = fileWorker;
+            this.resultText = resultText;
             InitializeComponent();
+            saveFileDialog.Filter = "txt files (.txt)|.txt|All files (.)|.";
         }
 
         private void Result_Load(object sender, EventArgs e)
         {
-            //Text text = fileReader.ReadFile("C:/Users/aadam/Documents/IO/lab1.txt");
-            Text text = textComparator.ResultText;
-            resultTextBox.AppendText(text.Content);
+            resultTextBox.AppendText(resultText.Content);
         }
 
         private void fileCancel_Click(object sender, EventArgs e)
@@ -38,6 +38,22 @@ namespace TextComparatorGUI
         public void initialize()
         {
 
+        }
+
+        private void fileSave_Click(object sender, EventArgs e)
+        {
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Task task = fileWorker.SaveFile(resultText, saveFileDialog.FileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Couldn't open file!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

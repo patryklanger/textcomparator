@@ -89,7 +89,6 @@ namespace TextComparatorGUI
 
         private void diffDone_Click(object sender, EventArgs e)
         {
-            nextForm = new Result(textComparator);
             nextForm.Show();
         }
 

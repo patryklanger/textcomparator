@@ -26,9 +26,9 @@ namespace FileComparator
             return resultObject;
         }
 
-        public async Task SaveFile(Text textToSave, string directory, string fileName)
+        public async Task SaveFile(Text textToSave, string filePath)
         {
-            await File.WriteAllTextAsync((directory+fileName), textToSave.Content);
+            await File.WriteAllTextAsync(filePath, textToSave.Content);
         }
     }
 }
