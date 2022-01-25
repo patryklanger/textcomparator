@@ -29,6 +29,13 @@ namespace FileComparator
             }
             private set => resultText = value;
         }
+        public Text firstText
+        {
+            get
+            {
+                return conflict.Item1;
+            }
+        }
         public bool MergeReady
         {
             private set => mergeReady = value;
@@ -71,9 +78,9 @@ namespace FileComparator
         {
             var dmp = new diff_match_patch();
             var diff = DiffLineMode(text1.Content, text2.Content);
-            dmp.diff_cleanupEfficiency(diff);
+            dmp.diff_cleanupSemantic(diff);
             SplitToBlocks(diff);
-        } 
+        }
 
         private void SplitToBlocks(List<Diff> diffSToSplit)
         {

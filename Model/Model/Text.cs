@@ -5,9 +5,7 @@ namespace FileComparator
     {
         public string Content;
         public string Name;
-        public string Directory;
-
-        
+        public string Directory;     
 
         public void Display()
         {

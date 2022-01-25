@@ -29,55 +29,57 @@ namespace TextComparatorGUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.fileSave = new System.Windows.Forms.Button();
             this.fileCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // resultTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(80, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(569, 354);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.resultTextBox.Location = new System.Drawing.Point(70, 11);
+            this.resultTextBox.Name = "resultTextBox";
+            this.resultTextBox.Size = new System.Drawing.Size(498, 332);
+            this.resultTextBox.TabIndex = 0;
+            this.resultTextBox.Text = "";
             // 
             // fileSave
             // 
-            this.fileSave.Location = new System.Drawing.Point(264, 387);
+            this.fileSave.Location = new System.Drawing.Point(231, 363);
             this.fileSave.Name = "fileSave";
-            this.fileSave.Size = new System.Drawing.Size(95, 29);
+            this.fileSave.Size = new System.Drawing.Size(83, 27);
             this.fileSave.TabIndex = 1;
             this.fileSave.Text = "Save";
             this.fileSave.UseVisualStyleBackColor = true;
             // 
             // fileCancel
             // 
-            this.fileCancel.Location = new System.Drawing.Point(380, 387);
+            this.fileCancel.Location = new System.Drawing.Point(332, 363);
             this.fileCancel.Name = "fileCancel";
-            this.fileCancel.Size = new System.Drawing.Size(95, 29);
+            this.fileCancel.Size = new System.Drawing.Size(83, 27);
             this.fileCancel.TabIndex = 2;
             this.fileCancel.Text = "Cancel";
             this.fileCancel.UseVisualStyleBackColor = true;
+            this.fileCancel.Click += new System.EventHandler(this.fileCancel_Click);
             // 
-            // Form3
+            // Result
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 447);
+            this.ClientSize = new System.Drawing.Size(642, 419);
             this.Controls.Add(this.fileCancel);
             this.Controls.Add(this.fileSave);
-            this.Controls.Add(this.richTextBox1);
-            this.Name = "Form3";
+            this.Controls.Add(this.resultTextBox);
+            this.Name = "Result";
             this.Text = "Form3";
+            this.Load += new System.EventHandler(this.Result_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox resultTextBox;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button fileSave;
         private System.Windows.Forms.Button fileCancel;

@@ -8,37 +8,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows;
 
 namespace TextComparatorGUI
 {
     public partial class Difference : System.Windows.Forms.Form
     {
-        private int currentConflict = 0;
-        Form previousForm;
+        public OpenFile previousForm;
+        public Result nextForm;
+
         private Text firstText;
         private Text secondText;
         private ITextComparator textComparator;
-        private List<Tuple<int, ConflictEnum, string>> firstListOfText = new List<Tuple<int, ConflictEnum, string>>();
-        private List<Tuple<int, ConflictEnum, string>> secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
-        private List<KeyValuePair<int,int>> firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
-        private List<KeyValuePair<int, int>> secondTextBoxConflicts = new List<KeyValuePair<int, int>>();
-        public Difference(Form previousForm, ITextComparator textComparator, Text firstText, Text secondText)
+        private List<Tuple<int, ConflictEnum, string>> firstListOfText, secondListOfText;
+        private Dictionary<int, int> firstTextBoxConflicts, secondTextBoxConflicts;
+
+        public Difference(ITextComparator textComparator)
         {
-            this.previousForm = previousForm;
-            this.firstText = firstText;
-            this.secondText = secondText;
             this.textComparator = textComparator;
             InitializeComponent();
-            Compare();
         }
 
-        private void diffPrev_Click(object sender, EventArgs e)
+        public void initialize(Text firstText, Text secondText)
         {
-            if (currentConflict == 0) return;
-            scrollToDiff(currentConflict - 1);
-            currentConflict--;
-            updateView();
+            this.firstText = firstText;
+            this.secondText = secondText;
+            firstListOfText = new List<Tuple<int, ConflictEnum, string>>();
+            secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
+            firstTextBoxConflicts = new Dictionary<int, int>();
+            secondTextBoxConflicts = new Dictionary<int, int>();
+            firstTextBox.Clear();
+            secondTextBox.Clear();
+            Compare();
+            this.Show();
         }
 
         private void Compare()
@@ -48,10 +49,39 @@ namespace TextComparatorGUI
             splitDifferences(listOfTexts);
             fillTextBox(firstTextBox, firstListOfText, firstTextBoxConflicts);
             fillTextBox(secondTextBox, secondListOfText, secondTextBoxConflicts);
-            scrollToDiff(currentConflict);
-            updateView();
             this.Enabled = true;
-            this.UseWaitCursor = false;
+        }
+
+        private void backToOpenFile_Click(object sender, EventArgs e)
+        {
+            previousForm.initialize();
+            this.Hide();
+        }
+
+        private void diffJump_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void diffFirst_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void diffDone_Click(object sender, EventArgs e)
+        {
+            nextForm = new Result(textComparator);
+            nextForm.Show();
+        }
+
+        private void difference(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Difference_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void splitDifferences(List<KeyValuePair<int, string>> listOfTexts)
@@ -70,7 +100,7 @@ namespace TextComparatorGUI
             }
         }
 
-        private void fillTextBox(RichTextBox richTextBox, List<Tuple<int, ConflictEnum, string>> listOfText, List<KeyValuePair<int, int>> textBoxConflicts)
+        private void fillTextBox(RichTextBox richTextBox, List<Tuple<int, ConflictEnum, string>> listOfText, Dictionary<int, int> textBoxConflicts)
         {
             int counter = 0;
             foreach (Tuple<int, ConflictEnum, string> text in listOfText)
@@ -81,51 +111,11 @@ namespace TextComparatorGUI
                 if (text.Item2 == ConflictEnum.YES)
                 {
                     richTextBox.SelectionColor = Color.Red;
-                    textBoxConflicts.Add(new KeyValuePair<int,int>(counter + 1, text.Item1));
+                    textBoxConflicts.Add(counter + 1, text.Item1);
                 }
-                richTextBox.AppendText(text.Item3);
-                counter = richTextBox.Text.Length;
+                richTextBox.AppendText(text.Item3 + $" [{text.Item1}]");
+                counter += text.Item3.Length;
             }
-        }
-
-        private void diffNext_Click(object sender, EventArgs e)
-        {
-
-            if (currentConflict == firstTextBoxConflicts.Count - 1) return;
-            scrollToDiff(currentConflict + 1);
-            currentConflict++;
-            updateView();
-        }
-        private void scrollToDiff(int index)
-        {
-            if (firstTextBoxConflicts.Count <= index) return;
-            var firstPosition = firstTextBoxConflicts[index].Key;
-            var secondPosition = secondTextBoxConflicts[index].Key;
-            firstTextBox.SelectionStart = firstPosition;
-            firstTextBox.ScrollToCaret();
-            secondTextBox.SelectionStart = secondPosition;
-            secondTextBox.ScrollToCaret();
-        }
-        private void updateView()
-        {
-            diffNext.Enabled = firstTextBoxConflicts.Count - 1 == currentConflict ? false : true;
-            diffPrev.Enabled = currentConflict == 0 ? false : true;
-            diffCount.Text = (currentConflict+1).ToString() + "/" + firstTextBoxConflicts.Count;
-        }
-
-        private void diffJump_Click(object sender, EventArgs e)
-        {
-            string result;
-            while (true)
-            {
-                result = InputDialog.ShowDialog("Enter difference index", "Jump to");
-                if (result == "") return;
-                if (Int32.Parse(result) > firstTextBoxConflicts.Count || Int32.Parse(result) - 1 < 0) result = InputDialog.ShowDialog("Enter correct difference index", "Jump to");
-                else break;
-            }
-            scrollToDiff(Int32.Parse(result) - 1);
-            currentConflict = Int32.Parse(result) - 1;
-            updateView();
         }
     }
 }
