@@ -13,13 +13,14 @@ namespace TextComparatorGUI
         /// Główny punkt wejścia dla aplikacji.
         /// </summary>
         [STAThread]
-
+        
         static void Main()
         {
-            ITextComparator textComparator = new PrimaryTextComparator();
-            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OpenFile(new PrimaryFileWorker(), textComparator));
+            Application.EnableVisualStyles();
+            ITextComparator textComparator = new PrimaryTextComparator();
+            View view = new View(new PrimaryFileWorker(), textComparator);
+            Application.Run(view.openFile);
         }
     }
 }

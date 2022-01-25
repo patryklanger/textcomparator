@@ -43,54 +43,54 @@ namespace TextComparatorGUI
             // firstFileLabel
             // 
             this.firstFileLabel.AutoSize = true;
-            this.firstFileLabel.Location = new System.Drawing.Point(12, 38);
+            this.firstFileLabel.Location = new System.Drawing.Point(10, 28);
             this.firstFileLabel.Name = "firstFileLabel";
-            this.firstFileLabel.Size = new System.Drawing.Size(61, 20);
+            this.firstFileLabel.Size = new System.Drawing.Size(48, 15);
             this.firstFileLabel.TabIndex = 0;
             this.firstFileLabel.Text = "First file";
             // 
             // firstFileTextBox
             // 
-            this.firstFileTextBox.Location = new System.Drawing.Point(101, 35);
+            this.firstFileTextBox.Location = new System.Drawing.Point(88, 26);
             this.firstFileTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.firstFileTextBox.Name = "firstFileTextBox";
             this.firstFileTextBox.ReadOnly = true;
-            this.firstFileTextBox.Size = new System.Drawing.Size(214, 27);
+            this.firstFileTextBox.Size = new System.Drawing.Size(188, 23);
             this.firstFileTextBox.TabIndex = 1;
             // 
             // secondFileTextBox
             // 
-            this.secondFileTextBox.Location = new System.Drawing.Point(101, 75);
+            this.secondFileTextBox.Location = new System.Drawing.Point(88, 56);
             this.secondFileTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.secondFileTextBox.Name = "secondFileTextBox";
             this.secondFileTextBox.ReadOnly = true;
-            this.secondFileTextBox.Size = new System.Drawing.Size(214, 27);
+            this.secondFileTextBox.Size = new System.Drawing.Size(188, 23);
             this.secondFileTextBox.TabIndex = 2;
             // 
             // secondFileLabel
             // 
             this.secondFileLabel.AutoSize = true;
-            this.secondFileLabel.Location = new System.Drawing.Point(12, 78);
+            this.secondFileLabel.Location = new System.Drawing.Point(10, 58);
             this.secondFileLabel.Name = "secondFileLabel";
-            this.secondFileLabel.Size = new System.Drawing.Size(83, 20);
+            this.secondFileLabel.Size = new System.Drawing.Size(65, 15);
             this.secondFileLabel.TabIndex = 3;
             this.secondFileLabel.Text = "Second file";
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(12, 9);
+            this.descriptionLabel.Location = new System.Drawing.Point(10, 7);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(174, 20);
+            this.descriptionLabel.Size = new System.Drawing.Size(139, 15);
             this.descriptionLabel.TabIndex = 4;
             this.descriptionLabel.Text = "Choose texts to compare";
             // 
             // firstFileButton
             // 
-            this.firstFileButton.Location = new System.Drawing.Point(321, 34);
+            this.firstFileButton.Location = new System.Drawing.Point(281, 26);
             this.firstFileButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.firstFileButton.Name = "firstFileButton";
-            this.firstFileButton.Size = new System.Drawing.Size(94, 29);
+            this.firstFileButton.Size = new System.Drawing.Size(82, 22);
             this.firstFileButton.TabIndex = 5;
             this.firstFileButton.Text = "Open FIle";
             this.firstFileButton.UseVisualStyleBackColor = true;
@@ -99,10 +99,10 @@ namespace TextComparatorGUI
             // compareButton
             // 
             this.compareButton.Enabled = false;
-            this.compareButton.Location = new System.Drawing.Point(158, 120);
+            this.compareButton.Location = new System.Drawing.Point(138, 90);
             this.compareButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.compareButton.Name = "compareButton";
-            this.compareButton.Size = new System.Drawing.Size(94, 29);
+            this.compareButton.Size = new System.Drawing.Size(82, 22);
             this.compareButton.TabIndex = 6;
             this.compareButton.Text = "Compare";
             this.compareButton.UseVisualStyleBackColor = true;
@@ -110,10 +110,10 @@ namespace TextComparatorGUI
             // 
             // secondFileButton
             // 
-            this.secondFileButton.Location = new System.Drawing.Point(321, 74);
+            this.secondFileButton.Location = new System.Drawing.Point(281, 56);
             this.secondFileButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.secondFileButton.Name = "secondFileButton";
-            this.secondFileButton.Size = new System.Drawing.Size(94, 29);
+            this.secondFileButton.Size = new System.Drawing.Size(82, 22);
             this.secondFileButton.TabIndex = 7;
             this.secondFileButton.Text = "Open file";
             this.secondFileButton.UseVisualStyleBackColor = true;
@@ -121,9 +121,9 @@ namespace TextComparatorGUI
             // 
             // OpenFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 182);
+            this.ClientSize = new System.Drawing.Size(378, 136);
             this.Controls.Add(this.secondFileButton);
             this.Controls.Add(this.compareButton);
             this.Controls.Add(this.firstFileButton);
@@ -135,6 +135,8 @@ namespace TextComparatorGUI
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "OpenFile";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OpenFile_FormClosing);
+            this.Load += new System.EventHandler(this.OpenFile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

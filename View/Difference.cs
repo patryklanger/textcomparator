@@ -40,6 +40,19 @@ namespace TextComparatorGUI
             currentConflict--;
             updateView();
         }
+        public void initialize(Text firstText, Text secondText)
+        {
+            this.firstText = firstText;
+            this.secondText = secondText;
+            firstListOfText = new List<Tuple<int, ConflictEnum, string>>();
+            secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
+            firstTextBoxConflicts = new Dictionary<int, int>();
+            secondTextBoxConflicts = new Dictionary<int, int>();
+            firstTextBox.Clear();
+            secondTextBox.Clear();
+            Compare();
+            this.Show();
+        }
 
         private void Compare()
         {
@@ -52,6 +65,28 @@ namespace TextComparatorGUI
             updateView();
             this.Enabled = true;
             this.UseWaitCursor = false;
+        }
+
+        private void backToOpenFile_Click(object sender, EventArgs e)
+        {
+            previousForm.initialize();
+            this.Hide();
+        }
+
+        private void diffDone_Click(object sender, EventArgs e)
+        {
+            nextForm = new Result(textComparator);
+            nextForm.Show();
+        }
+
+        private void difference(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Difference_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void splitDifferences(List<KeyValuePair<int, string>> listOfTexts)
@@ -111,7 +146,7 @@ namespace TextComparatorGUI
             diffNext.Enabled = firstTextBoxConflicts.Count - 1 == currentConflict ? false : true;
             diffPrev.Enabled = currentConflict == 0 ? false : true;
             diffCount.Text = (currentConflict+1).ToString() + "/" + firstTextBoxConflicts.Count;
-        }
+                }
 
         private void diffJump_Click(object sender, EventArgs e)
         {

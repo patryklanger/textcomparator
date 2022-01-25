@@ -22,5 +22,9 @@ namespace FileComparator
         {
             get;
         }
+        public Text firstText
+        {
+            get;
+        }
     }
 }
