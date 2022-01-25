@@ -15,6 +15,19 @@ namespace TextComparatorGUI
     public partial class Difference : System.Windows.Forms.Form
     {
         private int currentConflict = 0;
+        private class ConflictData
+        {
+            public int textID, textPosition, textLength;
+            public ConflictState conflictState;
+
+            public ConflictData(int textID, int textPosition, int textLength, ConflictState conflictState)
+            {
+                this.textID = textID;
+                this.textPosition = textPosition;
+                this.textLength = textLength;
+                this.conflictState = conflictState;
+            }
+        }
         public OpenFile previousForm;
         public Result nextForm;
         private Text firstText;
@@ -22,6 +35,7 @@ namespace TextComparatorGUI
         private ITextComparator textComparator;
         private List<Tuple<int, ConflictEnum, string>> firstListOfText = new List<Tuple<int, ConflictEnum, string>>();
         private List<Tuple<int, ConflictEnum, string>> secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
+        private Dictionary<int, ConflictData> firstConflicts, secondConflicts;
         private List<KeyValuePair<int,int>> firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
         private List<KeyValuePair<int, int>> secondTextBoxConflicts = new List<KeyValuePair<int, int>>();
         public Difference(ITextComparator textComparator)
@@ -45,6 +59,9 @@ namespace TextComparatorGUI
             secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
             firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
             secondTextBoxConflicts = new List<KeyValuePair<int, int>>();
+            firstConflicts = new Dictionary<int, ConflictData>();
+            secondConflicts = new Dictionary<int, ConflictData>();
+            currentConflict = 0;
             firstTextBox.Clear();
             secondTextBox.Clear();
             Compare();
@@ -56,8 +73,8 @@ namespace TextComparatorGUI
             textComparator.MakeComparison(firstText, secondText);
             List<KeyValuePair<int, string>> listOfTexts = textComparator.ListOfTexts;
             splitDifferences(listOfTexts);
-            fillTextBox(firstTextBox, firstListOfText, firstTextBoxConflicts);
-            fillTextBox(secondTextBox, secondListOfText, secondTextBoxConflicts);
+            fillTextBox(firstTextBox, firstListOfText, firstTextBoxConflicts, firstConflicts);
+            fillTextBox(secondTextBox, secondListOfText, secondTextBoxConflicts, secondConflicts);
             scrollToDiff(currentConflict);
             updateView();
             this.Enabled = true;
@@ -102,24 +119,98 @@ namespace TextComparatorGUI
             }
         }
 
-        private void fillTextBox(RichTextBox richTextBox, List<Tuple<int, ConflictEnum, string>> listOfText, List<KeyValuePair<int, int>> textBoxConflicts)
+        private void fillTextBox(RichTextBox richTextBox, List<Tuple<int, ConflictEnum, string>> listOfText, List<KeyValuePair<int, int>> textBoxConflicts, Dictionary<int, ConflictData> conflicts)
         {
             int counter = 0;
-            foreach (Tuple<int, ConflictEnum, string> text in listOfText)
+            for (int i = 0; i < listOfText.Count; i++)
             {
-                richTextBox.SelectionStart = richTextBox.TextLength;
+                int cursor = richTextBox.SelectionStart = richTextBox.TextLength;
                 richTextBox.SelectionLength = 0;
                 richTextBox.SelectionColor = Color.Black;
-                if (text.Item2 == ConflictEnum.YES)
+                if (listOfText[i].Item2 == ConflictEnum.YES)
                 {
-                    richTextBox.SelectionColor = Color.Red;
-                    textBoxConflicts.Add(new KeyValuePair<int,int>(counter + 1, text.Item1));
+                    richTextBox.SelectionBackColor = Color.FromArgb(247, 157, 159);
+                    textBoxConflicts.Add(new KeyValuePair<int, int> (counter + 1, listOfText[i].Item1));
+                    richTextBox.AppendText(listOfText[i].Item3);
+                    conflicts.Add(conflicts.Count, new ConflictData(listOfText[i].Item1, cursor, richTextBox.SelectionStart - cursor, ConflictState.UNDEFINED));
                 }
-                richTextBox.AppendText(text.Item3);
+                else
+                    richTextBox.AppendText(listOfText[i].Item3);
                 counter = richTextBox.Text.Length;
             }
         }
 
+        private void diffBasic_Click(object sender, EventArgs e)
+        {
+            ConflictState conflictState;
+            Color firstBoxColor, secondBoxColor;
+
+            if (sender.Equals(diffFirst))
+            {
+                conflictState = ConflictState.FIRST;
+                firstBoxColor = Color.FromArgb(177, 254, 197);
+                secondBoxColor = Color.Red;
+            }
+            else if (sender.Equals(diffSecond))
+            {
+                conflictState = ConflictState.SECOND;
+                firstBoxColor = Color.Red;
+                secondBoxColor = Color.FromArgb(177, 254, 197);
+            }
+            else
+            {
+                conflictState = ConflictState.DELETE;
+                firstBoxColor = Color.Red;
+                secondBoxColor = Color.Red;
+            }
+
+            ConflictData temp = firstConflicts[currentConflict];
+            temp.conflictState = conflictState;
+
+            firstTextBox.SelectionStart = temp.textPosition;
+            firstTextBox.SelectionLength = temp.textLength;
+            firstTextBox.SelectionBackColor = firstBoxColor;
+
+            temp = secondConflicts[currentConflict];
+            temp.conflictState = conflictState;
+
+            secondTextBox.SelectionStart = temp.textPosition;
+            secondTextBox.SelectionLength = temp.textLength;
+            secondTextBox.SelectionBackColor = secondBoxColor;
+        }
+        private void diffRest_Click(object sender, EventArgs e)
+        {
+            object delegateTo;
+            if (sender.Equals(diffFirstRest))
+                delegateTo = diffFirst;
+            else if (sender.Equals(diffSecondRest))
+                delegateTo = diffSecond;
+            else
+                delegateTo = diffDelete;
+
+            foreach (KeyValuePair<int, ConflictData> cd in firstConflicts)
+            {
+                if (cd.Value.conflictState == ConflictState.UNDEFINED)
+                {
+                    currentConflict = cd.Key;
+                    diffBasic_Click(delegateTo, null);
+                }
+            }
+        }
+        private void textBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            int caretPosition = ((RichTextBox)sender).SelectionStart;
+
+            foreach (KeyValuePair<int, ConflictData> cd in firstConflicts)
+            {
+                if (Enumerable.Range(cd.Value.textPosition, cd.Value.textPosition + cd.Value.textLength).Contains(caretPosition))
+                {
+                    currentConflict = cd.Key;
+                    scrollToDiff(currentConflict);
+                }
+            }
+            updateView();
+        }
         private void diffNext_Click(object sender, EventArgs e)
         {
 

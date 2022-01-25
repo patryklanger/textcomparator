@@ -56,6 +56,7 @@ namespace TextComparatorGUI
             this.firstTextBox.TabIndex = 0;
             this.firstTextBox.Text = "";
             this.firstTextBox.UseWaitCursor = true;
+            this.firstTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseDown);
             // 
             // secondTextBox
             // 
@@ -67,6 +68,8 @@ namespace TextComparatorGUI
             this.secondTextBox.TabIndex = 1;
             this.secondTextBox.Text = "";
             this.secondTextBox.UseWaitCursor = true;
+            this.secondTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseDown);
+
             // 
             // diffPrev
             // 
@@ -130,6 +133,7 @@ namespace TextComparatorGUI
             this.diffFirst.Text = "<-";
             this.diffFirst.UseVisualStyleBackColor = true;
             this.diffFirst.UseWaitCursor = true;
+            this.diffFirst.Click += new System.EventHandler(this.diffBasic_Click);
             // 
             // diffSecond
             // 
@@ -140,6 +144,7 @@ namespace TextComparatorGUI
             this.diffSecond.Text = "->";
             this.diffSecond.UseVisualStyleBackColor = true;
             this.diffSecond.UseWaitCursor = true;
+            this.diffSecond.Click += new System.EventHandler(this.diffBasic_Click);
             // 
             // diffDelete
             // 
@@ -150,6 +155,7 @@ namespace TextComparatorGUI
             this.diffDelete.Text = "X";
             this.diffDelete.UseVisualStyleBackColor = true;
             this.diffDelete.UseWaitCursor = true;
+            this.diffDelete.Click += new System.EventHandler(this.diffBasic_Click);
             // 
             // diffFirstRest
             // 
@@ -160,6 +166,7 @@ namespace TextComparatorGUI
             this.diffFirstRest.Text = "<<-";
             this.diffFirstRest.UseVisualStyleBackColor = true;
             this.diffFirstRest.UseWaitCursor = true;
+            this.diffFirstRest.Click += new System.EventHandler(this.diffRest_Click);
             // 
             // diffSecondRest
             // 
@@ -170,6 +177,7 @@ namespace TextComparatorGUI
             this.diffSecondRest.Text = "->>";
             this.diffSecondRest.UseVisualStyleBackColor = true;
             this.diffSecondRest.UseWaitCursor = true;
+            this.diffSecondRest.Click += new System.EventHandler(this.diffRest_Click);
             // 
             // diffDeleteRest
             // 
@@ -180,6 +188,7 @@ namespace TextComparatorGUI
             this.diffDeleteRest.Text = "(X)";
             this.diffDeleteRest.UseVisualStyleBackColor = true;
             this.diffDeleteRest.UseWaitCursor = true;
+            this.diffDeleteRest.Click += new System.EventHandler(this.diffRest_Click);
             // 
             // diffDone
             // 

@@ -11,4 +11,8 @@ namespace TextComparatorGUI
         YES,
         NO
     }
+    public enum ConflictState
+    {
+        FIRST, SECOND, DELETE, UNDEFINED
+    }
 }
