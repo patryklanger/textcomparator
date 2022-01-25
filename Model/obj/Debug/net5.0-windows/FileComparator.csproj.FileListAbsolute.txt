@@ -33,3 +33,15 @@ C:\Users\patry\Desktop\IO\dupa\Model\obj\Debug\net5.0-windows\FileComparator.csp
 C:\Users\patry\Desktop\IO\dupa\Model\obj\Debug\net5.0-windows\FileComparator.dll
 C:\Users\patry\Desktop\IO\dupa\Model\obj\Debug\net5.0-windows\ref\FileComparator.dll
 C:\Users\patry\Desktop\IO\dupa\Model\obj\Debug\net5.0-windows\FileComparator.pdb
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\bin\Debug\net5.0-windows\FileComparator.deps.json
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\bin\Debug\net5.0-windows\FileComparator.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\bin\Debug\net5.0-windows\ref\FileComparator.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\bin\Debug\net5.0-windows\FileComparator.pdb
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.csproj.AssemblyReference.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.AssemblyInfoInputs.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.AssemblyInfo.cs
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.csproj.CoreCompileInputs.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\ref\FileComparator.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\Model\obj\Debug\net5.0-windows\FileComparator.pdb

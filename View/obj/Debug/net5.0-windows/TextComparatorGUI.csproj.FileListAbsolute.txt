@@ -68,3 +68,27 @@ C:\Users\patry\Desktop\IO\dupa\View\obj\Debug\net5.0-windows\ref\TextComparatorG
 C:\Users\patry\Desktop\IO\dupa\View\obj\Debug\net5.0-windows\TextComparatorGUI.pdb
 C:\Users\patry\Desktop\IO\dupa\View\obj\Debug\net5.0-windows\TextComparatorGUI.genruntimeconfig.cache
 C:\Users\patry\Desktop\IO\dupa\View\obj\Debug\net5.0-windows\TextComparatorGUI.InputDialog.resources
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\TextComparatorGUI.exe
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\TextComparatorGUI.deps.json
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\TextComparatorGUI.runtimeconfig.json
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\TextComparatorGUI.runtimeconfig.dev.json
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\TextComparatorGUI.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\ref\TextComparatorGUI.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\TextComparatorGUI.pdb
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\FileComparator.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\bin\Debug\net5.0-windows\FileComparator.pdb
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.csproj.AssemblyReference.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.Difference.resources
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.InputDialog.resources
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.OpenFile.resources
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.Result.resources
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.csproj.GenerateResource.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.AssemblyInfoInputs.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.AssemblyInfo.cs
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.csproj.CoreCompileInputs.cache
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.csproj.CopyComplete
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\ref\TextComparatorGUI.dll
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.pdb
+C:\Users\patry\Desktop\Nowy folder (2)\textcomparator\View\obj\Debug\net5.0-windows\TextComparatorGUI.genruntimeconfig.cache

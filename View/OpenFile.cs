@@ -17,13 +17,11 @@ namespace TextComparatorGUI
 
         private Text firstText;
         private Text secondText;
-        ITextComparator textComparator;
 
         public PrimaryFileWorker fileWorker;
         public OpenFile(PrimaryFileWorker fileWorker)
         {
             this.fileWorker = fileWorker;
-            this.textComparator = textComparator;
             InitializeComponent();
         }
 

@@ -15,7 +15,8 @@ namespace TextComparatorGUI
     public partial class Difference : System.Windows.Forms.Form
     {
         private int currentConflict = 0;
-        Form previousForm;
+        public OpenFile previousForm;
+        public Result nextForm;
         private Text firstText;
         private Text secondText;
         private ITextComparator textComparator;
@@ -23,14 +24,10 @@ namespace TextComparatorGUI
         private List<Tuple<int, ConflictEnum, string>> secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
         private List<KeyValuePair<int,int>> firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
         private List<KeyValuePair<int, int>> secondTextBoxConflicts = new List<KeyValuePair<int, int>>();
-        public Difference(Form previousForm, ITextComparator textComparator, Text firstText, Text secondText)
+        public Difference(ITextComparator textComparator)
         {
-            this.previousForm = previousForm;
-            this.firstText = firstText;
-            this.secondText = secondText;
             this.textComparator = textComparator;
             InitializeComponent();
-            Compare();
         }
 
         private void diffPrev_Click(object sender, EventArgs e)
@@ -46,8 +43,8 @@ namespace TextComparatorGUI
             this.secondText = secondText;
             firstListOfText = new List<Tuple<int, ConflictEnum, string>>();
             secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
-            firstTextBoxConflicts = new Dictionary<int, int>();
-            secondTextBoxConflicts = new Dictionary<int, int>();
+            firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
+            secondTextBoxConflicts = new List<KeyValuePair<int, int>>();
             firstTextBox.Clear();
             secondTextBox.Clear();
             Compare();

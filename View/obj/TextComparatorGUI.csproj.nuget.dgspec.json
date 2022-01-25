@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\patry\\Desktop\\IO\\dupa\\View\\TextComparatorGUI.csproj": {}
+    "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\View\\TextComparatorGUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj": {
+    "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\Model\\FileComparator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj",
+        "projectUniqueName": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\Model\\FileComparator.csproj",
         "projectName": "FileComparator",
-        "projectPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj",
+        "projectPath": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\Model\\FileComparator.csproj",
         "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\obj\\",
+        "outputPath": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\patry\\Desktop\\IO\\dupa\\View\\TextComparatorGUI.csproj": {
+    "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\View\\TextComparatorGUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patry\\Desktop\\IO\\dupa\\View\\TextComparatorGUI.csproj",
+        "projectUniqueName": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\View\\TextComparatorGUI.csproj",
         "projectName": "TextComparatorGUI",
-        "projectPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\View\\TextComparatorGUI.csproj",
+        "projectPath": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\View\\TextComparatorGUI.csproj",
         "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\View\\obj\\",
+        "outputPath": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\View\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -90,8 +90,8 @@
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj": {
-                "projectPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj"
+              "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\Model\\FileComparator.csproj": {
+                "projectPath": "C:\\Users\\patry\\Desktop\\Nowy folder (2)\\textcomparator\\Model\\FileComparator.csproj"
               }
             }
           }
