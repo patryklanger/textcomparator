@@ -24,6 +24,10 @@ namespace TextComparatorGUI
             saveFileDialog.Filter = "txt files (.txt)|.txt|All files (.)|.";
         }
 
+        private void Result_Load(object sender, EventArgs e)
+        {
+        }
+
         private void fileCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -33,7 +37,7 @@ namespace TextComparatorGUI
         public void initialize(Text resultText)
         {
             this.resultText = resultText;
-            resultTextBox.Text = "";
+            this.resultTextBox.Text = "";
             resultTextBox.AppendText(resultText.Content);
             this.Show();
         }

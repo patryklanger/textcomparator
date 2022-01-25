@@ -36,7 +36,7 @@ namespace TextComparatorGUI
         private List<Tuple<int, ConflictEnum, string>> firstListOfText = new List<Tuple<int, ConflictEnum, string>>();
         private List<Tuple<int, ConflictEnum, string>> secondListOfText = new List<Tuple<int, ConflictEnum, string>>();
         private Dictionary<int, ConflictData> firstConflicts, secondConflicts;
-        private List<KeyValuePair<int,int>> firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
+        private List<KeyValuePair<int, int>> firstTextBoxConflicts = new List<KeyValuePair<int, int>>();
         private List<KeyValuePair<int, int>> secondTextBoxConflicts = new List<KeyValuePair<int, int>>();
         public Difference(ITextComparator textComparator)
         {
@@ -75,7 +75,7 @@ namespace TextComparatorGUI
             splitDifferences(listOfTexts);
             fillTextBox(firstTextBox, firstListOfText, firstTextBoxConflicts, firstConflicts);
             fillTextBox(secondTextBox, secondListOfText, secondTextBoxConflicts, secondConflicts);
-            scrollToDiff(currentConflict);
+            if (currentConflict != -1) scrollToDiff(currentConflict);
             updateView();
             this.Enabled = true;
             this.UseWaitCursor = false;
@@ -86,15 +86,65 @@ namespace TextComparatorGUI
             previousForm.initialize();
             this.Hide();
         }
+        private List<int> checkForUnresolvedConflicts()
+        {
+            List<int> listOfUnresolvedConflicts = new List<int>();
+            for (int i = 0; i < firstConflicts.Count; i++)
+            {
+                if (firstConflicts[i].conflictState == ConflictState.UNDEFINED)
+                    listOfUnresolvedConflicts.Add(i);
+            }
+            return listOfUnresolvedConflicts;
+        }
 
         private void diffDone_Click(object sender, EventArgs e)
         {
-            nextForm.Show();
+            List<int> unresolvedConflicts = checkForUnresolvedConflicts();
+            if (unresolvedConflicts.Count != 0)
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append($"There is a total of {unresolvedConflicts.Count} unresolved conflicts:");
+                builder.AppendLine();
+                foreach (int conflictID in unresolvedConflicts)
+                    builder.Append($"Conflict {conflictID}, ");
+                builder.Remove(builder.Length - 2, 2);
+                builder.Append(".");
+                builder.AppendLine();
+                builder.Append("If you wish to continues, declare your desired action on each of the conflicts.");
+                MessageBox.Show(builder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var result = new Text();
+            result.Content = createResultText();
+            nextForm.initialize(result);
         }
-
-        private void difference(object sender, EventArgs e)
+        public String createResultText()
         {
-
+            StringBuilder result = new StringBuilder();
+            int conflictCounter = 0;
+            foreach (Tuple<int, ConflictEnum, string> currentBlockOfText in firstListOfText)
+            {
+                if (currentBlockOfText.Item2 == ConflictEnum.NO)
+                    result.Append(currentBlockOfText.Item3);
+                else
+                {
+                    ConflictState conflictState = firstConflicts[conflictCounter].conflictState;
+                    switch (conflictState)
+                    {
+                        case ConflictState.FIRST:
+                            result.Append(firstListOfText[firstConflicts[conflictCounter].textID].Item3);
+                            break;
+                        case ConflictState.SECOND:
+                            result.Append(secondListOfText[secondConflicts[conflictCounter].textID].Item3);
+                            break;
+                        case ConflictState.DELETE:
+                        case ConflictState.UNDEFINED:
+                            break;
+                    }
+                    conflictCounter++;
+                }
+            }
+            return result.ToString();
         }
 
         private void Difference_FormClosing(object sender, FormClosingEventArgs e)
@@ -129,7 +179,7 @@ namespace TextComparatorGUI
                 if (listOfText[i].Item2 == ConflictEnum.YES)
                 {
                     richTextBox.SelectionBackColor = Color.FromArgb(247, 157, 159);
-                    textBoxConflicts.Add(new KeyValuePair<int, int> (counter + 1, listOfText[i].Item1));
+                    textBoxConflicts.Add(new KeyValuePair<int, int>(counter + 1, listOfText[i].Item1));
                     richTextBox.AppendText(listOfText[i].Item3);
                     conflicts.Add(conflicts.Count, new ConflictData(listOfText[i].Item1, cursor, richTextBox.SelectionStart - cursor, ConflictState.UNDEFINED));
                 }
@@ -137,8 +187,9 @@ namespace TextComparatorGUI
                     richTextBox.AppendText(listOfText[i].Item3);
                 counter = richTextBox.Text.Length;
             }
-        }
+            if (firstTextBoxConflicts.Count == 0) currentConflict = -1;
 
+        } 
         private void diffBasic_Click(object sender, EventArgs e)
         {
             ConflictState conflictState;
@@ -230,10 +281,25 @@ namespace TextComparatorGUI
         }
         private void updateView()
         {
-            diffNext.Enabled = firstTextBoxConflicts.Count - 1 == currentConflict ? false : true;
-            diffPrev.Enabled = currentConflict == 0 ? false : true;
-            diffCount.Text = (currentConflict+1).ToString() + "/" + firstTextBoxConflicts.Count;
-                }
+            if (firstTextBoxConflicts.Count != 0)
+            {
+                diffNext.Enabled = firstTextBoxConflicts.Count - 1 == currentConflict ? false : true;
+                diffPrev.Enabled = currentConflict == 0 ? false : true;
+                diffCount.Text = (currentConflict + 1).ToString() + "/" + firstTextBoxConflicts.Count;
+            } else
+            {
+                currentConflict = -1;
+                diffFirst.Enabled = false;
+                diffSecond.Enabled = false;
+                diffDelete.Enabled = false;
+                diffFirstRest.Enabled = false;
+                diffSecondRest.Enabled = false;
+                diffDeleteRest.Enabled = false;
+                diffJump.Enabled = false;
+                diffPrev.Enabled = false;
+                diffNext.Enabled = false;
+            }
+        }
 
         private void diffJump_Click(object sender, EventArgs e)
         {
