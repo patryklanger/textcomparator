@@ -24,9 +24,6 @@ namespace TextComparatorGUI
             saveFileDialog.Filter = "txt files (.txt)|.txt|All files (.)|.";
         }
 
-        private void Result_Load(object sender, EventArgs e)
-        {
-        }
 
         private void fileCancel_Click(object sender, EventArgs e)
         {

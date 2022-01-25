@@ -18,6 +18,7 @@ namespace TextComparatorGUI
             openFile = new OpenFile(primaryFileWorker);
             difference = new Difference(textComparator);
             result = new Result(primaryFileWorker);
+            result.previousForm = difference;
             openFile.nextForm = difference;
             difference.previousForm = openFile;
             difference.nextForm = result;
