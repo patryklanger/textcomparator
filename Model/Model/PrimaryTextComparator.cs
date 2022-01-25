@@ -6,61 +6,11 @@ namespace FileComparator
 {
     public class PrimaryTextComparator : ITextComparator
     {
-        private int currentDecisionId;
-        private bool mergeReady = false;
-        private bool unresolvedConflict = false;
         private List<KeyValuePair<int, string>> listOfTexts;
         public List<KeyValuePair<int, string>> ListOfTexts { get => listOfTexts; }
-        private Text resultText;
-        private (Text, Text) conflict = (new Text(), new Text());
-        public Text ResultText
-        {
-            get
-            {
-                try
-                {
-                    if (!mergeReady) throw new NotMergedException();
-                    return resultText;
-                }
-                catch
-                {
-                    return new Text();
-                }
-            }
-            private set => resultText = value;
-        }
-        public Text firstText
-        {
-            get
-            {
-                return conflict.Item1;
-            }
-        }
-        public bool MergeReady
-        {
-            private set => mergeReady = value;
-            get => mergeReady;
-        }
-        public (Text,Text) Conflict
-        {
-            private set => conflict = value;
-            get => conflict;
-        }
+        
         public PrimaryTextComparator()
         {
-            currentDecisionId = 0;
-            resultText = new Text();
-
-        }
-        public void ResolveConflict(int index)
-        {
-            if (index == 0) this.resultText.Content += conflict.Item1.Content;
-            else if (index == 1) this.resultText.Content += conflict.Item2.Content;
-            else throw new IndexOutOfRangeException();
-            conflict = (new Text(), new Text());
-            unresolvedConflict = false;
-            if (currentDecisionId == listOfTexts[^1].Key) mergeReady = true;
-            else currentDecisionId++;
         }
         private List<Diff> DiffLineMode(string text1, string text2)
         {
@@ -114,48 +64,6 @@ namespace FileComparator
             this.listOfTexts = diffDict;
         }
 
-        public bool MakeDecision()
-        {
-            if (unresolvedConflict) throw new UnresolvedConflictException();
-            if (mergeReady) return true;
-            for (int i = 0; i < listOfTexts.Count; i++)
-            {
-                if(i == listOfTexts.Count - 1 && listOfTexts[listOfTexts.Count-1].Key == currentDecisionId)
-                {
-                    resultText.Content += listOfTexts[i].Value;
-                    mergeReady = true;
-                    return true;
-                }
-                if (listOfTexts[i].Key == listOfTexts[i+1].Key && listOfTexts[i].Key == currentDecisionId)
-                {
-                    var firstText = new Text();
-                    var secondText = new Text();
-
-                    firstText.Content = listOfTexts[i].Value;
-                    secondText.Content = listOfTexts[i + 1].Value;
-
-                    conflict = (firstText, secondText);
-                    unresolvedConflict = true;
-
-                    return false;
-                }
-                if (listOfTexts[i].Key == currentDecisionId)
-                {
-                    resultText.Content += listOfTexts[i].Value;
-                    currentDecisionId++;
-                    return true;
-                }
-            }
-            return true;
-        }
-
-        public Text CreateNewText()
-        {
-            if (!mergeReady) throw new NotMergedException();
-            var resultText = new Text();
-            foreach (var blockOfText in listOfTexts) resultText.Content += blockOfText;
-            return resultText;
-            
-        }
+ 
     }
 }

@@ -15,9 +15,7 @@
     <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
     <Folder Include="Model\" />
     <Folder Include="Model\Interfaces\" />
-    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>
