@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "TextComparatorGUI/1.0.0": {
+        "dependencies": {
+          "FileComparator": "1.0.0"
+        },
+        "runtime": {
+          "TextComparatorGUI.dll": {}
+        }
+      },
+      "FileComparator/1.0.0": {
+        "runtime": {
+          "FileComparator.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TextComparatorGUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FileComparator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
