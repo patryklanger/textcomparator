@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj": {}
+    "C:\\Users\\inviz\\Desktop\\studia\\IO\\Projekt\\dupa-main\\Model\\FileComparator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj": {
+    "C:\\Users\\inviz\\Desktop\\studia\\IO\\Projekt\\dupa-main\\Model\\FileComparator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj",
+        "projectUniqueName": "C:\\Users\\inviz\\Desktop\\studia\\IO\\Projekt\\dupa-main\\Model\\FileComparator.csproj",
         "projectName": "FileComparator",
-        "projectPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\FileComparator.csproj",
-        "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patry\\Desktop\\IO\\dupa\\Model\\obj\\",
+        "projectPath": "C:\\Users\\inviz\\Desktop\\studia\\IO\\Projekt\\dupa-main\\Model\\FileComparator.csproj",
+        "packagesPath": "C:\\Users\\inviz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\inviz\\Desktop\\studia\\IO\\Projekt\\dupa-main\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\inviz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

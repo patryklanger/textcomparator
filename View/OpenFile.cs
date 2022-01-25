@@ -13,20 +13,28 @@ namespace TextComparatorGUI
 {
     public partial class OpenFile : System.Windows.Forms.Form
     {
-        Difference difference;
+        public Difference nextForm;
 
         private Text firstText;
         private Text secondText;
-        ITextComparator textComparator;
 
         public PrimaryFileWorker fileWorker;
-        public OpenFile(PrimaryFileWorker fileWorker, ITextComparator textComparator)
+        public OpenFile(PrimaryFileWorker fileWorker)
         {
             this.fileWorker = fileWorker;
-            this.textComparator = textComparator;
             InitializeComponent();
         }
 
+        public void initialize()
+        {
+            firstText = null;
+            secondText = null;
+            firstFileTextBox.Text = null;
+            secondFileTextBox.Text = null;
+            compareButton.Enabled = false;
+            this.Show();
+        }
+        
         private void compareButton_Click(object sender, EventArgs e)
         {
             try
@@ -38,11 +46,8 @@ namespace TextComparatorGUI
             {
                 MessageBox.Show("Couldn't open file!", "Error!", MessageBoxButtons.OK ,MessageBoxIcon.Error);
             }
-
-            this.Visible = false;
-            difference = new Difference(this, textComparator, firstText, secondText);
-            difference.Show();
-
+            nextForm.initialize(firstText, secondText);
+            this.Hide();
         }
 
         private void fileButton_Click(object sender, EventArgs e)

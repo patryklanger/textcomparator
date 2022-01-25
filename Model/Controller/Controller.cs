@@ -8,8 +8,7 @@ namespace FileComparator
     {
         const string FIRST_FILE_FILEPATH = @"/Users/patryklanger/inputFile.txt";
         const string SECOND_FILE_FILEPATH = @"/Users/patryklanger/inputFile1.txt";
-        const string RESULT_FILE_FILEPATH = @"/Users/patryklanger/";
-        const string RESULT_FILE_FILENAME = "result.txt";
+        const string RESULT_FILE_FILEPATH = @"/Users/patryklanger/result.txt";
         const string FILE_SAVED_MESSAGE = "FileSaved!";
         const string OPTIONS_MESSAGE = "Choose between two options:\nFirst option is";
 
@@ -39,7 +38,7 @@ namespace FileComparator
             comparator.MakeComparison(text1, text2);
             while (!comparator.MergeReady) if(!comparator.MakeDecision()) SolveConflict();
             Text resultText = comparator.ResultText;
-            await fileWorker.SaveFile(resultText, RESULT_FILE_FILEPATH, RESULT_FILE_FILENAME).ContinueWith((antecdent) => Console.WriteLine(FILE_SAVED_MESSAGE));
+            await fileWorker.SaveFile(resultText, RESULT_FILE_FILEPATH).ContinueWith((antecdent) => Console.WriteLine(FILE_SAVED_MESSAGE));
         }
         private void SolveConflict()
         {
